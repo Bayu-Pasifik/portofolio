@@ -1,15 +1,14 @@
-"use client";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { Observer } from "gsap/Observer";
+'use client';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { Observer } from 'gsap/Observer';
 
 gsap.registerPlugin(Observer);
 
-export default function Greet() {
+const Greet: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    // Parallax effect on title
     Observer.create({
       target: window,
       type: "scroll",
@@ -23,14 +22,15 @@ export default function Greet() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen text-center">
-      <h1 ref={titleRef} className="text-6xl font-bold">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 via-white to-white text-center px-4">
+      <h1 ref={titleRef} className="text-6xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-7xl">
         Halo, Saya Bayu Pasifik
       </h1>
-      <p className="mt-4 text-lg text-gray-600">
-        Saya seorang <strong>Web Developer dan Mobile Developer</strong> yang
-        berfokus pada <strong>pengembangan web dan aplikasi mobile</strong>.
+      <p className="mt-4 text-xl text-gray-600">
+        Seorang <span className="font-semibold text-blue-600">Application Developer</span> dengan fokus pada <span className="font-semibold text-blue-600">Pengembangan Website dan Aplikasi Mobile</span>.
       </p>
     </main>
   );
-}
+};
+
+export default Greet;
