@@ -34,7 +34,7 @@ const About: React.FC = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="px-6 py-20 text-center bg-gray-50"
+      className="px-6 py-20 text-center bg-blue-50"
     >
       <h2 className="text-4xl font-bold text-gray-800">Tentang Saya</h2>
       <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
