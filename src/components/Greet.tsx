@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
@@ -25,17 +25,17 @@ const Greet: React.FC = () => {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 via-white to-blue-50 text-center px-4">
-      <img
-        src="/images/bayu.jpg" // Ganti dengan path gambar Anda
+      {/* <img
+        src="/images/bayu.jpg"
         alt="Bayu Pasifik"
         className="w-72 h-72 mb-6 shadow-lg border-4 rounded-full border-white"
-      />
+      /> */}
       <h1
         ref={titleRef}
         className="text-6xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-7xl"
       >
         Halo, Saya{' '}
-        <span className="inline-block text-blue-600">
+        <div className="inline-block text-blue-600">
           <Typewriter
             options={{
               strings: ['Bayu Pasifik'],
@@ -45,11 +45,11 @@ const Greet: React.FC = () => {
               deleteSpeed: 50,
             }}
           />
-        </span>
+        </div>
       </h1>
       <p className="mt-4 text-xl text-gray-600 max-w-xl">
         Seorang{' '}
-        <span className="font-semibold text-blue-600 inline-block">
+        <div className="font-semibold text-blue-600 inline-block">
           <Typewriter
             options={{
               strings: ['Website Developer', 'Mobile Developer'],
@@ -59,20 +59,12 @@ const Greet: React.FC = () => {
               deleteSpeed: 50,
             }}
           />
-        </span>{' '}
+        </div>{' '}
         yang berfokus pada
       </p>
-      <p className="text-xl font-semibold text-blue-600">
-        <Typewriter
-          options={{
-            strings: ['Pengembangan Website', 'Pengembangan Aplikasi Mobile'],
-            autoStart: true,
-            loop: true,
-            delay: 75,
-            deleteSpeed: 50,
-          }}
-        />
-      </p>
+      <span className="text-xl font-semibold text-blue-600">
+        pengembangan website & aplikasi mobile.
+      </span>
     </main>
   );
 };
