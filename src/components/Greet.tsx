@@ -25,11 +25,6 @@ const Greet: React.FC = () => {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 via-white to-blue-50 text-center px-4">
-      {/* <img
-        src="/images/bayu.jpg"
-        alt="Bayu Pasifik"
-        className="w-72 h-72 mb-6 shadow-lg border-4 rounded-full border-white"
-      /> */}
       <h1
         ref={titleRef}
         className="text-6xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-7xl"
