@@ -1,78 +1,153 @@
 "use client";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
-import Typewriter from 'typewriter-effect';
+import { ScrollTrigger } from "gsap/all";
+import Typewriter from "typewriter-effect";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 const HomePage: React.FC = () => {
+  const imgTemp = "/images/temp.jpg";
+
   useEffect(() => {
-    const panels = gsap.utils.toArray<HTMLElement>("#panels-container .panel");
-    const panelsContainer = document.querySelector(
-      "#panels-container"
-    ) as HTMLElement;
-
-    const tween = gsap.to(panels, {
-      xPercent: -100 * (panels.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#panels-container",
-        pin: true,
-        scrub: 1,
-        snap: {
-          snapTo: 1 / (panels.length - 1),
-          inertia: false,
-          duration: { min: 0.1, max: 0.1 },
+    // Animasi intro
+    gsap.fromTo(
+      "#intro",
+      { opacity: 0, y: -50 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: "#intro",
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
         },
-        end: () => `+=${panelsContainer.offsetWidth - window.innerWidth}`,
-      },
-    });
-
-    const anchors = document.querySelectorAll<HTMLAnchorElement>(".anchor");
-    anchors.forEach((anchor) => {
-      anchor.addEventListener("click", (e) => {
-        e.preventDefault();
-        const href = anchor.getAttribute("href")!;
-        const targetElem = document.querySelector(href) as HTMLElement;
-
-        let y = targetElem;
-
-        if (
-          targetElem &&
-          panelsContainer.isSameNode(targetElem.parentElement)
-        ) {
-          const totalScroll =
-            tween.scrollTrigger!.end - tween.scrollTrigger!.start;
-          const totalMovement = (panels.length - 1) * targetElem.offsetWidth;
-          y = Math.round(
-            tween.scrollTrigger!.start +
-              (targetElem.offsetLeft / totalMovement) * totalScroll
-          ) as any;
+      }
+    );
+  
+    // Animasi gambar di about
+    gsap.fromTo(
+      "#about-image",
+      { opacity: 0, x: -100 },
+      {
+        opacity: 1,
+        x: 0,
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 80%",
+          end: "top 50%",
+          scrub: true,
+        },
+      }
+    );
+  
+    // Animasi text paragraphs di about
+    const paragraphs = gsap.utils.toArray<HTMLParagraphElement>("#about-text h2");
+    paragraphs.forEach((p, i) => {
+      gsap.fromTo(
+        p,
+        { opacity: 0, x: 100 },
+        {
+          opacity: 1,
+          x: 0,
+          scrollTrigger: {
+            trigger: p,
+            start: "top 90%",
+            end: "top 60%",
+            scrub: true,
+          },
         }
-
-        gsap.to(window, {
-          scrollTo: { y, autoKill: false },
-          duration: 3,
-        });
-      });
+      );
+    });
+  
+    // Animasi untuk ikon sosial media
+    gsap.fromTo(
+      "#social-icons a",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: "#social-icons",
+          start: "top 90%",
+          end: "top 70%",
+          scrub: true,
+        },
+      }
+    );
+  
+    // Animasi untuk setiap kartu proyek
+    const projectCards = gsap.utils.toArray<HTMLDivElement>(".project-card");
+    projectCards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            end: "top 70%",
+            scrub: true,
+          },
+        }
+      );
     });
   }, []);
+  
+
+  const Projects = [
+    {
+      id: 1,
+      title: "Proyek 1",
+      description: "Deskripsi singkat proyek ini.",
+      image: imgTemp,
+    },
+    {
+      id: 2,
+      title: "Proyek 2",
+      description: "Deskripsi singkat proyek ini.",
+      image: imgTemp,
+    },
+    {
+      id: 3,
+      title: "Proyek 3",
+      description: "Deskripsi singkat proyek ini.",
+      image: imgTemp,
+    },
+    {
+      id: 4,
+      title: "Proyek 4",
+      description: "Deskripsi singkat proyek ini.",
+      image: imgTemp,
+    },
+    {
+      id: 5,
+      title: "Proyek 5",
+      description: "Deskripsi singkat proyek ini.",
+      image: imgTemp,
+    },
+    {
+      id: 6,
+      title: "Proyek 6",
+      description: "Deskripsi singkat proyek ini.",
+      image: imgTemp,
+    },
+  ];
 
   return (
     <div id="page" className="site">
-      <div id="feather" className="feather"></div>
-
       {/* Header */}
       <header id="masthead" className="site-header fixed z-[9999] flex">
         <nav className="anchor-nav flex space-x-4">
-          {["#intro", "#panel-1", "#panel-3", "#panel-5", "#map"].map(
-            (link, index) => (
-              <a key={index} href={link} className="anchor px-4 py-2">
-                {link.replace("#", "").toUpperCase()}
-              </a>
-            )
-          )}
+          {["#intro", "#about", "#projects"].map((link, index) => (
+            <a key={index} href={link} className="anchor px-4 py-2">
+              {link.replace("#", "").toUpperCase()}
+            </a>
+          ))}
         </nav>
       </header>
 
@@ -83,11 +158,9 @@ const HomePage: React.FC = () => {
           id="intro"
           className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-500 via-white to-blue-50"
         >
-          <h1
-            // ref={titleRef}
-            className="text-6xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-7xl"
-          >
-            Halo, Saya
+          <h1 className="text-6xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-7xl">
+            Halo, Saya{" "}
+            <span className="text-blue-600">
               <Typewriter
                 options={{
                   strings: ["Bayu Pasifik"],
@@ -95,14 +168,13 @@ const HomePage: React.FC = () => {
                   loop: true,
                   delay: 75,
                   deleteSpeed: 50,
-                  wrapperClassName: "inline-block text-blue-600",
                 }}
               />
-
+            </span>
           </h1>
-          <h1 className="mt-4 text-xl text-gray-600 max-w-xl">
+          <h2 className="mt-4 text-xl text-gray-600 max-w-xl">
             Seorang{" "}
-            <span className="font-semibold text-blue-600 inline-block">
+            <span className="font-semibold text-blue-600">
               <Typewriter
                 options={{
                   strings: ["Website Developer", "Mobile Developer"],
@@ -113,67 +185,81 @@ const HomePage: React.FC = () => {
                 }}
               />
             </span>{" "}
-            yang berfokus pada
-          </h1>
-          <span className="text-xl font-semibold text-blue-600">
-            pengembangan website & aplikasi mobile.
-          </span>
+            yang berfokus pada pengembangan website & aplikasi mobile.
+          </h2>
         </section>
 
-        {/* Panels Section */}
-        <section id="panels">
-          <div
-            id="panels-container"
-            className="flex w-[500%] h-screen overflow-hidden"
-          >
-            {Array.from({ length: 5 }).map((_, i) => (
-              <article
-                key={i}
-                id={`panel-${i + 1}`}
-                className={`panel full-screen ${
-                  i % 2 === 0 ? "bg-green-500" : "bg-blue-500"
-                } flex`}
-              >
-                <div className="container mx-auto flex items-center justify-between px-10">
-                  <div className="w-1/2">
-                    <img src="" alt={`Panel ${i + 1}`} />
-                  </div>
-                  <div className="w-1/2 flex flex-col space-y-4">
-                    <h2>Panel {i + 1}</h2>
-                    <p className="step-description">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
-                    <div className="panels-navigation flex space-x-2">
-                      {i > 0 && (
-                        <a
-                          href={`#panel-${i}`}
-                          className="nav-panel anchor px-4 py-2"
-                        >
-                          Prev
-                        </a>
-                      )}
-                      {i < 4 && (
-                        <a
-                          href={`#panel-${i + 2}`}
-                          className="nav-panel anchor px-4 py-2"
-                        >
-                          Next
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
+        {/* About Section */}
+        <section
+          id="about"
+          className="flex flex-col md:flex-row items-center justify-center h-screen px-6 bg-blue-50 text-gray-600"
+        >
+          <div id="about-image" className="md:w-1/2 flex justify-center">
+            <img
+              src="/images/bayu.png"
+              alt="Bayu Pasifik"
+              className="max-w-[80%] h-96"
+            />
+          </div>
+          <div id="about-text" className="md:w-1/2 px-6 space-y-4">
+            <h1 className="text-4xl font-bold">Tentang Saya</h1>
+            <h2 className="text-base leading-relaxed">
+              Nama saya Bayu Pasifik. Saya seorang developer yang berasal dari
+              Indonesia dan tahun ini berusia 25 tahun.
+            </h2>
+            <h2 className="text-base leading-relaxed">
+              Saya berfokus h2ada pengembangan website dan aplikasi mobile,
+              dengan hasrat untuk mempelajari hal-hal baru di bidang
+              pengembangan perangkat lunak.
+            </h2>
+            <h2 className="text-base leading-relaxed">
+              Saya menyukai tantangan dalam mengerjakan coding, terutama dalam
+              mencari solusi untuk masalah yang kompleks dan meningkatkan
+              performa aplikasi.
+            </h2>
+            <h2 className="text-base leading-relaxed">
+              Saya memiliki pengalaman dalam berbagai proyek, mulai dari
+              aplikasi bisnis hingga platform interaktif, dan terus mencari
+              peluang untuk mengembangkan keahlian saya dalam teknologi terbaru.
+            </h2>
+            <h2 className="text-base leading-relaxed">
+              Saya percaya bahwa pengembangan software adalah bidang yang selalu
+              berkembang, dan itulah yang membuatnya sangat menarik bagi saya.
+            </h2>
+            <div id="social-icons" className="flex space-x-4 mt-6">
+              <a href="#" className="text-blue-600 text-2xl">
+                <i className="fab fa-linkedin"></i>
+              </a>
+              <a href="#" className="text-green-500 text-2xl">
+                <i className="fab fa-telegram"></i>
+              </a>
+              <a href="#" className="text-green-600 text-2xl">
+                <i className="fab fa-whatsapp"></i>
+              </a>
+            </div>
           </div>
         </section>
 
-        {/* Map Section */}
-        <section
-          id="map"
-          className="h-screen bg-gradient-to-r from-orange-400 to-orange-600"
-        ></section>
+        {/* Project Section */}
+        <section id="projects" className="py-12 px-6 bg-gray-100">
+          <h1 className="text-4xl font-bold text-center mb-8">Projects</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Projects.map((project) => (
+              <div
+                key={project.id}
+                className="project-card p-4 bg-white shadow-lg rounded-lg"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-40 object-cover rounded-md"
+                />
+                <h2 className="text-lg font-semibold mt-4">{project.title}</h2>
+                <p className="text-gray-600">{project.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );
