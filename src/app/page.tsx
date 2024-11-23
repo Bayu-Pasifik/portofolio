@@ -160,7 +160,7 @@ const HomePage: React.FC = () => {
           id="intro"
           className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-500 via-white to-blue-50"
         >
-          <h1 className="text-6xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-7xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-800 tracking-tight leading-tight">
             Halo, Saya{" "}
             <span className="text-blue-600">
               <Typewriter
@@ -174,7 +174,7 @@ const HomePage: React.FC = () => {
               />
             </span>
           </h1>
-          <h2 className="mt-4 text-xl text-gray-600 max-w-xl">
+          <h2 className="mt-4 text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 max-w-xl text-center">
             Seorang{" "}
             <span className="font-semibold text-blue-600">
               <Typewriter
@@ -194,7 +194,7 @@ const HomePage: React.FC = () => {
         {/* About Section */}
         <section
           id="about"
-          className="flex flex-col md:flex-row items-center justify-center h-screen px-6 bg-blue-50 text-gray-600"
+          className="flex flex-col md:flex-row items-center justify-center h-screen py-12 px-6 bg-blue-50 text-gray-600"
         >
           <div id="about-image" className="md:w-1/2 flex justify-center">
             <img
@@ -232,7 +232,7 @@ const HomePage: React.FC = () => {
             {/* Skills Icons */}
             <div
               id="skills-icons"
-              className="flex flex-wrap justify-start items-center gap-4 mt-6"
+              className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-4 mt-6"
             >
               <a href="#" className="text-blue-600">
                 <img
@@ -316,8 +316,8 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* Project Section */}
-        <section id="projects" className="py-12 px-6">
-          <h1 className="text-4xl font-bold text-center mb-8">Projects</h1>
+        <section id="projects" className="py-96 sm:py-72 md:py-12 xl:py-12 2xl:py-12 px-6">
+          <h1 className="text-4xl font-bold text-center mb-8 text-blue-500">Projects</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Projects.map((project) => (
               <div
