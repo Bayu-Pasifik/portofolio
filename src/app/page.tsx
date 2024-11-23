@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Typewriter from "typewriter-effect";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +27,7 @@ const HomePage: React.FC = () => {
         },
       }
     );
-  
+
     // Animasi gambar di about
     gsap.fromTo(
       "#about-image",
@@ -41,9 +43,10 @@ const HomePage: React.FC = () => {
         },
       }
     );
-  
+
     // Animasi text paragraphs di about
-    const paragraphs = gsap.utils.toArray<HTMLParagraphElement>("#about-text h2");
+    const paragraphs =
+      gsap.utils.toArray<HTMLParagraphElement>("#about-text h2");
     paragraphs.forEach((p, i) => {
       gsap.fromTo(
         p,
@@ -60,24 +63,24 @@ const HomePage: React.FC = () => {
         }
       );
     });
-  
-    // Animasi untuk ikon sosial media
+
+    // Animasi untuk ikon skill
     gsap.fromTo(
-      "#social-icons a",
+      "#skills-icons img",
       { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
         stagger: 0.2,
         scrollTrigger: {
-          trigger: "#social-icons",
+          trigger: "#skills-icons",
           start: "top 90%",
           end: "top 70%",
           scrub: true,
         },
       }
     );
-  
+
     // Animasi untuk setiap kartu proyek
     const projectCards = gsap.utils.toArray<HTMLDivElement>(".project-card");
     projectCards.forEach((card) => {
@@ -97,7 +100,6 @@ const HomePage: React.FC = () => {
       );
     });
   }, []);
-  
 
   const Projects = [
     {
@@ -201,14 +203,14 @@ const HomePage: React.FC = () => {
               className="max-w-[80%] h-96"
             />
           </div>
-          <div id="about-text" className="md:w-1/2 px-6 space-y-4">
+          <div id="about-text" className="md:w-1/2 px-6 space-y-6">
             <h1 className="text-4xl font-bold">Tentang Saya</h1>
             <h2 className="text-base leading-relaxed">
               Nama saya Bayu Pasifik. Saya seorang developer yang berasal dari
               Indonesia dan tahun ini berusia 25 tahun.
             </h2>
             <h2 className="text-base leading-relaxed">
-              Saya berfokus h2ada pengembangan website dan aplikasi mobile,
+              Saya berfokus pada pengembangan website dan aplikasi mobile,
               dengan hasrat untuk mempelajari hal-hal baru di bidang
               pengembangan perangkat lunak.
             </h2>
@@ -226,22 +228,95 @@ const HomePage: React.FC = () => {
               Saya percaya bahwa pengembangan software adalah bidang yang selalu
               berkembang, dan itulah yang membuatnya sangat menarik bagi saya.
             </h2>
-            <div id="social-icons" className="flex space-x-4 mt-6">
-              <a href="#" className="text-blue-600 text-2xl">
-                <i className="fab fa-linkedin"></i>
+
+            {/* Skills Icons */}
+            <div
+              id="skills-icons"
+              className="flex flex-wrap justify-start items-center gap-4 mt-6"
+            >
+              <a href="#" className="text-blue-600">
+                <img
+                  src="/images/icons/laravel.png"
+                  alt="Laravel"
+                  className="w-12 h-12"
+                />
               </a>
-              <a href="#" className="text-green-500 text-2xl">
-                <i className="fab fa-telegram"></i>
+              <a href="#" className="text-green-500">
+                <img
+                  src="/images/icons/php.png"
+                  alt="PHP"
+                  className="w-12 h-12"
+                />
               </a>
-              <a href="#" className="text-green-600 text-2xl">
-                <i className="fab fa-whatsapp"></i>
+              <a href="#" className="text-yellow-500">
+                <img
+                  src="/images/icons/js.png"
+                  alt="JavaScript"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-blue-400">
+                <img
+                  src="/images/icons/react.png"
+                  alt="React"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-blue-600">
+                <img
+                  src="/images/icons/tailwind.png"
+                  alt="Tailwind CSS"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-gray-800">
+                <img
+                  src="/images/icons/next-js.png"
+                  alt="Next.js"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-gray-800">
+                <img
+                  src="/images/icons/bootstrap.png"
+                  alt="Bootstrap"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-gray-800">
+                <img
+                  src="/images/icons/dart.png"
+                  alt="dart"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-gray-800">
+                <img
+                  src="/images/icons/flutter.png"
+                  alt="flutter"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-gray-800">
+                <img
+                  src="/images/icons/sql.png"
+                  alt="sql"
+                  className="w-12 h-12"
+                />
+              </a>
+              <a href="#" className="text-gray-800">
+                <img
+                  src="/images/icons/firebase.png"
+                  alt="firebase"
+                  className="w-12 h-12"
+                />
               </a>
             </div>
           </div>
         </section>
 
         {/* Project Section */}
-        <section id="projects" className="py-12 px-6 bg-gray-100">
+        <section id="projects" className="py-12 px-6">
           <h1 className="text-4xl font-bold text-center mb-8">Projects</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Projects.map((project) => (
