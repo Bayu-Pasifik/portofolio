@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Typewriter from "typewriter-effect";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,6 +97,49 @@ const HomePage: React.FC = () => {
         }
       );
     });
+    // Animasi untuk form kontak
+    gsap.fromTo(
+      "#contact form",
+      { opacity: 0, scale: 0.5, rotate: -15, backgroundColor: "#ffffff" },
+      {
+        opacity: 1,
+        scale: 1,
+        rotate: 0,
+        backgroundColor: "#f0f8ff",
+        duration: 1.5,
+        ease: "elastic.out(1, 0.5)", // Efek bounce yang lebih dinamis
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "top 80%",
+          end: "top 60%",
+          scrub: false,
+          toggleActions: "restart none none none",
+        },
+      }
+    );
+
+    // Animasi untuk ikon sosial media
+    const socialIcons = gsap.utils.toArray<HTMLDivElement>("#contact a");
+    gsap.fromTo(
+      socialIcons,
+      { opacity: 0, y: 50, scale: 0.8, rotate: -10 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: "power4.out", // Efek smooth
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "top 90%",
+          end: "top 70%",
+          scrub: false,
+          toggleActions: "restart none none none",
+        },
+      }
+    );
   }, []);
 
   const Projects = [
