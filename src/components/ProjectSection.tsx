@@ -1,14 +1,10 @@
 "use client";
 import React from "react";
+import { projects } from "../app/data/projectData"; // Import data dari file eksternal
 
 const ProjectSection: React.FC = () => {
-  const projects = [
-    { id: 1, title: "Proyek 1", description: "Deskripsi singkat proyek ini." },
-    { id: 2, title: "Proyek 2", description: "Deskripsi singkat proyek ini." },
-  ];
-
   return (
-    <section id="projects" className="py-12 px-6">
+    <section id="projects" className="py-12 px-6 bg-blue-50">
       <h1 className="text-4xl font-bold text-center mb-8 text-blue-500">
         Projects
       </h1>
@@ -16,10 +12,42 @@ const ProjectSection: React.FC = () => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="project-card p-4 bg-white shadow-lg rounded-lg"
+            className="p-6 bg-white shadow-lg rounded-lg flex flex-col projects-card"
           >
-            <h2 className="text-lg font-semibold mt-4">{project.title}</h2>
-            <p className="text-gray-600">{project.description}</p>
+            {/* Icon Project */}
+            <div className="flex justify-center mb-4">
+              <img
+                src={project.icons}
+                alt={`${project.language} Icon`}
+                className="w-12 h-12 object-contain"
+              />
+            </div>
+
+            {/* Title */}
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              {project.title}
+            </h2>
+
+            {/* Type and Language */}
+            <p className="text-sm text-gray-500 mb-4">
+              <span className="font-medium text-blue-600">Type:</span>{" "}
+              {project.type} |{" "}
+              <span className="font-medium text-blue-600">Language:</span>{" "}
+              {project.language}
+            </p>
+
+            {/* Description */}
+            <p className="text-gray-600 flex-grow mb-4">{project.description}</p>
+
+            {/* Link */}
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto inline-block text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-md text-center transition"
+            >
+              View on GitHub
+            </a>
           </div>
         ))}
       </div>
