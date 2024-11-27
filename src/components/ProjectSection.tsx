@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { projects } from "../app/data/projectData"; // Import data dari file eksternal
+import { projects } from "../app/data/projectData";
 
 const ProjectSection: React.FC = () => {
   return (
@@ -8,11 +8,13 @@ const ProjectSection: React.FC = () => {
       <h1 className="text-4xl font-bold text-center mb-8 text-blue-500">
         Projects
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {projects.map((project) => (
           <div
             key={project.id}
-            className="p-6 bg-white shadow-lg rounded-lg flex flex-col projects-card"
+            className="p-6 bg-white shadow-lg rounded-lg flex flex-col projects-card 
+                       transition-transform duration-300 transform 
+                       hover:shadow-2xl hover:scale-105 hover:skew-y-2"
           >
             {/* Icon Project */}
             <div className="flex justify-center mb-4">
@@ -37,7 +39,9 @@ const ProjectSection: React.FC = () => {
             </p>
 
             {/* Description */}
-            <p className="text-gray-600 flex-grow mb-4">{project.description}</p>
+            <p className="text-gray-600 flex-grow mb-4">
+              {project.description}
+            </p>
 
             {/* Link */}
             <a
