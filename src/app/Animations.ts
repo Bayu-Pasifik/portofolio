@@ -144,14 +144,15 @@ export const contactFormAnimation = () => {
         scale: 1,
         rotate: 0,
         stagger: 0.2,
-        duration: 1,
+        duration: 0.5,
         ease: "power4.out", // Efek smooth
         scrollTrigger: {
-          trigger: "#contact",
+          trigger: "#contact a",
           start: "top 90%",
           end: "top 70%",
           scrub: false,
           toggleActions: "restart none none none",
+          markers: true,
         },
       }
     );
