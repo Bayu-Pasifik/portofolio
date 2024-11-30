@@ -5,7 +5,7 @@ import {
   skillsIconsAnimation,
   projectCardsAnimation,
   contactFormAnimation,
-} from "./Animations";
+} from "../Animations";
 
 const useAnimations = () => {
   useEffect(() => {
