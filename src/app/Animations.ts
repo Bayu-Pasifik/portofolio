@@ -152,7 +152,6 @@ export const contactFormAnimation = () => {
           end: "top 70%",
           scrub: false,
           toggleActions: "restart none none none",
-          markers: true,
         },
       }
     );
