@@ -2,13 +2,13 @@
 import React from "react";
 
 const SkillsIcons: React.FC = () => {
-  const skills = [
-    { src: "/images/icons/laravel.png", alt: "Laravel" },
-    { src: "/images/icons/php.png", alt: "PHP" },
-    { src: "/images/icons/js.png", alt: "JavaScript" },
-    { src: "/images/icons/react.png", alt: "React" },
-    { src: "/images/icons/tailwind.png", alt: "Tailwind CSS" },
-  ];
+  // const skills = [
+  //   { src: "/images/icons/laravel.png", alt: "Laravel" },
+  //   { src: "/images/icons/php.png", alt: "PHP" },
+  //   { src: "/images/icons/js.png", alt: "JavaScript" },
+  //   { src: "/images/icons/react.png", alt: "React" },
+  //   { src: "/images/icons/tailwind.png", alt: "Tailwind CSS" },
+  // ];
 
   return (
     <div>
