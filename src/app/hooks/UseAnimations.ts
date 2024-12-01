@@ -9,11 +9,14 @@ import {
 
 const useAnimations = () => {
   useEffect(() => {
-    introAnimation();
-    aboutAnimations();
-    skillsIconsAnimation();
-    projectCardsAnimation();
-    contactFormAnimation();
+    if (typeof window !== "undefined") {
+      // Pastikan berjalan di sisi klien
+      introAnimation();
+      aboutAnimations();
+      skillsIconsAnimation();
+      projectCardsAnimation();
+      contactFormAnimation();
+    }
   }, []);
 };
 

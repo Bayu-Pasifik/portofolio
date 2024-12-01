@@ -2,22 +2,10 @@
 import React from "react";
 import useAnimations from "./hooks/UseAnimations";
 import Header from "@/components/Header";
-
-// Menggunakan dynamic untuk menonaktifkan SSR pada komponen tertentu
-import dynamic from "next/dynamic";
-
-const IntroSection = dynamic(() => import("@/components/IntroSection"), {
-  ssr: false, // Nonaktifkan SSR untuk komponen ini
-});
-const AboutSection = dynamic(() => import("@/components/AboutSection"), {
-  ssr: false,
-});
-const ProjectSection = dynamic(() => import("@/components/ProjectSection"), {
-  ssr: false,
-});
-const ContactSection = dynamic(() => import("@/components/ContactSection"), {
-  ssr: false,
-});
+import IntroSection from "@/components/IntroSection";
+import AboutSection from "@/components/AboutSection";
+import ProjectSection from "@/components/ProjectSection";
+import ContactSection from "@/components/ContactSection";
 
 const HomePage: React.FC = () => {
   useAnimations();
@@ -36,4 +24,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-
