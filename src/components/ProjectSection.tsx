@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
 import { projects } from "../app/data/projectData";
+import { useProjectCardsAnimation } from "@/app/Animations";
 
 const ProjectSection: React.FC = () => {
+  const projectCardsRef = useProjectCardsAnimation();
   return (
-    <section id="projects" className="py-12 px-6 bg-blue-50">
+    <section id="projects" className="py-12 px-6 bg-blue-50" ref={projectCardsRef}>
       <h1 className="text-4xl font-bold text-center mb-8 text-blue-500">
         Projects
       </h1>

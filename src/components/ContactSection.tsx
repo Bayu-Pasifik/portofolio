@@ -1,7 +1,9 @@
 "use client";
+import { useContactFormAnimation } from "@/app/Animations";
 import React, { useState } from "react";
 
 const ContactSection: React.FC = () => {
+  const contactRef = useContactFormAnimation();
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,6 +22,7 @@ const ContactSection: React.FC = () => {
     <section
       id="contact"
       className="flex flex-col items-center justify-center py-24 px-6 bg-gradient-to-b from-blue-50 to-blue-50 text-gray-800 mb-40 h-full"
+      ref={contactRef}
     >
       <h1 className="text-4xl font-bold text-center mb-8 text-blue-500">
         Contact Me

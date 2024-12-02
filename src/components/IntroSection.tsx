@@ -6,6 +6,8 @@ import { Montserrat, Poppins } from "next/font/google";
 import Lottie from "lottie-react";
 import scrollDown from "../../public/images/lottie/scroll-down.json";
 import arrowDown from "../../public/images/lottie/arrow-down.json";
+import { useIntroAnimation } from "@/app/Animations";
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -20,10 +22,12 @@ const poppins = Poppins({
 });
 
 const IntroSection: React.FC = () => {
+  const introRef = useIntroAnimation();
   return (
     <section
       id="intro"
       className={`relative flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-500 via-white to-blue-50 px-4`}
+      ref={introRef}
     >
       {/* Heading H1 */}
       <h1

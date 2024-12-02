@@ -1,14 +1,9 @@
 "use client";
+import { useSkillsIconsAnimation } from "@/app/Animations";
 import React from "react";
 
 const SkillsIcons: React.FC = () => {
-  // const skills = [
-  //   { src: "/images/icons/laravel.png", alt: "Laravel" },
-  //   { src: "/images/icons/php.png", alt: "PHP" },
-  //   { src: "/images/icons/js.png", alt: "JavaScript" },
-  //   { src: "/images/icons/react.png", alt: "React" },
-  //   { src: "/images/icons/tailwind.png", alt: "Tailwind CSS" },
-  // ];
+  const skillsIconsRef = useSkillsIconsAnimation();
 
   return (
     <div>
@@ -16,6 +11,7 @@ const SkillsIcons: React.FC = () => {
       <div
         id="skills-icons"
         className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-4 mt-6"
+        ref={skillsIconsRef}
       >
         <a href="#" className="text-blue-600">
           <img

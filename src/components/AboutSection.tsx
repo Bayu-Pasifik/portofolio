@@ -3,6 +3,7 @@
 import React from "react";
 import SkillsIcons from "./SkillIscons"; // import sesuai dengan file yang benar
 import { Roboto } from "next/font/google";
+import { useAboutAnimations } from "@/app/Animations";
 
 // Import font Roboto dengan pengaturan bobot yang diperlukan
 const roboto = Roboto({
@@ -12,13 +13,15 @@ const roboto = Roboto({
 });
 
 const AboutSection: React.FC = () => {
+  const { aboutImageRef, aboutTextRef } = useAboutAnimations();
   return (
     <section
       id="about"
       className="flex flex-col md:flex-row items-center justify-center h-screen my-64 py-12 px-6 bg-blue-50 text-gray-600"
+      // ref={aboutRef}
     >
       {/* Gambar */}
-      <div id="about-image" className="md:w-1/2 flex justify-center">
+      <div id="about-image" className="md:w-1/2 flex justify-center" ref={aboutImageRef}>
         <img
           src="/images/bayu.png"
           alt="Bayu Pasifik"
@@ -27,7 +30,7 @@ const AboutSection: React.FC = () => {
       </div>
 
       {/* Teks Deskripsi */}
-      <div id="about-text" className="md:w-1/2 px-6 space-y-6">
+      <div id="about-text" className="md:w-1/2 px-6 space-y-6" ref={aboutTextRef}>
         <h1 className="text-4xl font-bold">Tentang Saya</h1>
 
         <h2 className={`${roboto.className} text-base leading-relaxed`}>
