@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import useActiveSection from "../app/hooks/useActiveSection";
+import useActiveSection from "../hooks/useActiveSection";
 
 const Header: React.FC = () => {
   const sectionIds = ["intro", "about", "projects", "contact"];

@@ -1,14 +1,19 @@
 "use client";
-import React from "react";
-import useAnimations from "./hooks/UseAnimations";
+
+import React, { useState, useEffect } from "react";
+// import useAnimations from "../hooks/UseAnimations";
 import Header from "@/components/Header";
 import IntroSection from "@/components/IntroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import ContactSection from "@/components/ContactSection";
+import LoadingScreen from "@/components/LoadingScreen"; // Komponen loading
 
 const HomePage: React.FC = () => {
-  useAnimations();
+
+  // Tetap panggil useAnimations meskipun window belum tersedia
+  // useAnimations();
+
 
   return (
     <div id="page" className="site">
