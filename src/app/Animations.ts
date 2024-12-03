@@ -187,6 +187,7 @@ export const useIntroAnimation = () => {
   const introRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if(typeof document !== "undefined") {
     const introElement = introRef.current;
     if (introElement) {
       gsap.fromTo(
@@ -204,6 +205,7 @@ export const useIntroAnimation = () => {
         }
       );
     }
+    }
   });
 
   return introRef;
@@ -215,7 +217,8 @@ export const useAboutAnimations = () => {
   const aboutTextRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const aboutImage = aboutImageRef.current;
+    if(typeof document !== "undefined") {
+      const aboutImage = aboutImageRef.current;
     if (aboutImage) {
       gsap.fromTo(
         aboutImage,
@@ -232,8 +235,9 @@ export const useAboutAnimations = () => {
         }
       );
     }
-
-    const paragraphs = aboutTextRef.current?.querySelectorAll<HTMLHeadingElement>("h2") || [];
+    }
+    if(typeof document !== "undefined") {
+      const paragraphs = aboutTextRef.current?.querySelectorAll<HTMLHeadingElement>("h2") || [];
     paragraphs.forEach((p) => {
       gsap.fromTo(
         p,
@@ -250,7 +254,9 @@ export const useAboutAnimations = () => {
         }
       );
     });
-  });
+  }
+    }
+    );
 
   return { aboutImageRef, aboutTextRef };
 };
@@ -260,7 +266,8 @@ export const useSkillsIconsAnimation = () => {
   const skillsIconsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const skillsIcons = skillsIconsRef.current?.querySelectorAll<HTMLImageElement>("img") || [];
+    if(typeof document !== "undefined") {
+      const skillsIcons = skillsIconsRef.current?.querySelectorAll<HTMLImageElement>("img") || [];
     if (skillsIcons.length > 0) {
       gsap.fromTo(
         skillsIcons,
@@ -278,6 +285,7 @@ export const useSkillsIconsAnimation = () => {
         }
       );
     }
+    }
   });
 
   return skillsIconsRef;
@@ -288,60 +296,62 @@ export const useProjectCardsAnimation = () => {
   const projectCardsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const projectCards = projectCardsRef.current?.querySelectorAll<HTMLDivElement>(".projects-card") || [];
-
-    projectCards.forEach((card, index) => {
-      // Scroll-trigger animation
-      let animationConfig;
-
-      if (index >= 0 && index <= 2) {
-        animationConfig = { opacity: 1, y: 0 };
-      } else if (index >= 3 && index <= 5) {
-        animationConfig = { opacity: 1, x: 0 };
-      } else {
-        animationConfig = { opacity: 1, x: 0 };
-      }
-
-
-      gsap.fromTo(
-        card,
-        { opacity: 0, ...(index <= 2 ? { y: 50 } : { x: 50 }) },
-        {
-          ...animationConfig,
-          delay: index * 0.2,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            end: "top 70%",
-            scrub: true,
-          },
+    if(typeof document !== "undefined") {
+      const projectCards = projectCardsRef.current?.querySelectorAll<HTMLDivElement>(".projects-card") || [];
+      projectCards.forEach((card, index) => {
+        // Scroll-trigger animation
+        let animationConfig;
+  
+        if (index >= 0 && index <= 2) {
+          animationConfig = { opacity: 1, y: 0 };
+        } else if (index >= 3 && index <= 5) {
+          animationConfig = { opacity: 1, x: 0 };
+        } else {
+          animationConfig = { opacity: 1, x: 0 };
         }
-      );
-
-      // Hover effect
-      const hoverIn = () => {
-        gsap.to(card, {
-          scale: 1.1,
-          rotate: 5,
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-          duration: 0.3,
-          ease: "power3.out",
-        });
-      };
-
-      const hoverOut = () => {
-        gsap.to(card, {
-          scale: 1,
-          rotate: 0,
-          boxShadow: "0 5px 10px rgba(0, 0, 0, 0.1)",
-          duration: 0.3,
-          ease: "power3.inOut",
-        });
-      };
-
-      card.addEventListener("mouseenter", hoverIn);
-      card.addEventListener("mouseleave", hoverOut);
-    });
+  
+  
+        gsap.fromTo(
+          card,
+          { opacity: 0, ...(index <= 2 ? { y: 50 } : { x: 50 }) },
+          {
+            ...animationConfig,
+            delay: index * 0.2,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              end: "top 70%",
+              scrub: true,
+            },
+          }
+        );
+  
+        // Hover effect
+        const hoverIn = () => {
+          gsap.to(card, {
+            scale: 1.1,
+            rotate: 5,
+            boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            duration: 0.3,
+            ease: "power3.out",
+          });
+        };
+  
+        const hoverOut = () => {
+          gsap.to(card, {
+            scale: 1,
+            rotate: 0,
+            boxShadow: "0 5px 10px rgba(0, 0, 0, 0.1)",
+            duration: 0.3,
+            ease: "power3.inOut",
+          });
+        };
+  
+        card.addEventListener("mouseenter", hoverIn);
+        card.addEventListener("mouseleave", hoverOut);
+      });
+    }
+    
   });
 
   return projectCardsRef;
@@ -353,7 +363,8 @@ export const useContactFormAnimation = () => {
   const contactRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    const contactForm = contactRef.current?.querySelector<HTMLFormElement>("form");
+    if(typeof document !== "undefined") {
+      const contactForm = contactRef.current?.querySelector<HTMLFormElement>("form");
     if (contactForm) {
       gsap.fromTo(
         contactForm,
@@ -375,8 +386,11 @@ export const useContactFormAnimation = () => {
         }
       );
     }
+    }
+    
 
-    const socialIcons = contactRef.current?.querySelectorAll<HTMLAnchorElement>("a") || [];
+    if(typeof document !== "undefined") {
+      const socialIcons = contactRef.current?.querySelectorAll<HTMLAnchorElement>("a") || [];
     if (socialIcons.length > 0) {
       gsap.fromTo(
         socialIcons,
@@ -398,6 +412,7 @@ export const useContactFormAnimation = () => {
           },
         }
       );
+    }
     }
   });
 
