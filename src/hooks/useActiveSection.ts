@@ -11,25 +11,27 @@ const useActiveSection = (sectionIds: string[]) => {
     };
 
     const observers: IntersectionObserver[] = [];
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (!element) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(`#${id}`);
-              window.history.replaceState(null, "", `#${id}`); // Update URL
-            }
-          });
-        },
-        observerOptions
-      );
-
-      observer.observe(element);
-      observers.push(observer);
-    });
+    if(typeof window !== "undefined") {
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (!element) return;
+  
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveSection(`#${id}`);
+                window.history.replaceState(null, "", `#${id}`); // Update URL
+              }
+            });
+          },
+          observerOptions
+        );
+  
+        observer.observe(element);
+        observers.push(observer);
+      });
+    }
 
     return () => {
       observers.forEach((observer) => observer.disconnect());
