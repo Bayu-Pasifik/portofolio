@@ -289,11 +289,19 @@ export const useProjectCardsAnimation = () => {
 
   useGSAP(() => {
     const projectCards = projectCardsRef.current?.querySelectorAll<HTMLDivElement>(".projects-card") || [];
+
     projectCards.forEach((card, index) => {
+      // Scroll-trigger animation
       let animationConfig;
 
-      if (index <= 2) animationConfig = { opacity: 1, y: 0 };
-      else animationConfig = { opacity: 1, x: index <= 5 ? 0 : -50 };
+      if (index >= 0 && index <= 2) {
+        animationConfig = { opacity: 1, y: 0 };
+      } else if (index >= 3 && index <= 5) {
+        animationConfig = { opacity: 1, x: 0 };
+      } else {
+        animationConfig = { opacity: 1, x: 0 };
+      }
+
 
       gsap.fromTo(
         card,
@@ -309,11 +317,36 @@ export const useProjectCardsAnimation = () => {
           },
         }
       );
+
+      // Hover effect
+      const hoverIn = () => {
+        gsap.to(card, {
+          scale: 1.1,
+          rotate: 5,
+          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+          duration: 0.3,
+          ease: "power3.out",
+        });
+      };
+
+      const hoverOut = () => {
+        gsap.to(card, {
+          scale: 1,
+          rotate: 0,
+          boxShadow: "0 5px 10px rgba(0, 0, 0, 0.1)",
+          duration: 0.3,
+          ease: "power3.inOut",
+        });
+      };
+
+      card.addEventListener("mouseenter", hoverIn);
+      card.addEventListener("mouseleave", hoverOut);
     });
   });
 
   return projectCardsRef;
 };
+
 
 // Contact Animation
 export const useContactFormAnimation = () => {
