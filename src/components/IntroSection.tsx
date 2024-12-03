@@ -3,7 +3,8 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 import { Montserrat, Poppins } from "next/font/google";
-import Lottie from "lottie-react";
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 import scrollDown from "../../public/images/lottie/scroll-down.json";
 import arrowDown from "../../public/images/lottie/arrow-down.json";
 import { useIntroAnimation } from "@/app/Animations";
