@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+
 // import useAnimations from "../hooks/UseAnimations";
 import Header from "@/components/Header";
 import IntroSection from "@/components/IntroSection";
@@ -8,7 +8,7 @@ import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import ContactSection from "@/components/ContactSection";
 
-const HomePage: React.FC = () => {
+export default function Home()  {
 
   // Tetap panggil useAnimations meskipun window belum tersedia
   // useAnimations();
@@ -27,4 +27,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+
