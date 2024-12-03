@@ -7,7 +7,6 @@ import IntroSection from "@/components/IntroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import ContactSection from "@/components/ContactSection";
-import LoadingScreen from "@/components/LoadingScreen"; // Komponen loading
 
 const HomePage: React.FC = () => {
 
