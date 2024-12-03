@@ -7,6 +7,8 @@ import IntroSection from "@/components/IntroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import ContactSection from "@/components/ContactSection";
+import { Suspense } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home()  {
 
@@ -15,7 +17,8 @@ export default function Home()  {
 
 
   return (
-    <div id="page" className="site">
+    <Suspense fallback={<LoadingScreen />}>
+      <div id="page" className="site">
       <Header />
       <main id="content" className="site-content">
         <IntroSection />
@@ -24,6 +27,7 @@ export default function Home()  {
         <ContactSection />
       </main>
     </div>
+    </Suspense>
   );
 };
 
